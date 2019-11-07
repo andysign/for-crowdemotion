@@ -1,4 +1,8 @@
-// Backend Get Authorization Token Test
+/*
+* Backend Get Authorization Token Test
+* Usage: node bc-get-auth-token.js [password]
+* UsageAsModule: require('./bc-get-auth-token')
+*/
 const request = require('request-promise');
 
 const prc = process;
