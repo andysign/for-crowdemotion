@@ -6,7 +6,7 @@
 const request = require('request-promise');
 
 const prc = process;
-const password = prc.argv[2]?prc.argv[2]:(prc.env.PASSWORD?prc.env.PASSWORD:'');
+const password = prc.argv[2] ? prc.argv[2]: prc.env.PASSWORD;
 const url = 'https://api.uat.pe.researchnow.com/auth/v1/token/password';
 
 const options = { method: 'POST',
@@ -20,8 +20,9 @@ const options = { method: 'POST',
 
 const call = request(options);
 
-if (require.main !== module) module.exports = call;
+if (require.main !== module) { module.exports = call; }
 
-call.then( function(r) {
-	console.log(r.accessToken);
-} ).catch( function() { console.error('Call failed...'); } );
+if (require.main === module) {
+	call.then( function(r) { console.log(r.accessToken); } )
+		.catch( function() { console.error('Call failed...'); } );
+}
