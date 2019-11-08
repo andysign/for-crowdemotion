@@ -109,6 +109,128 @@ CURLstdout:
 
 ---
 
+#### Projects - Get All Projects
+
+Use the AUTH env var first.
+
+`export AUTH=............`
+
+```bash
+curl -X GET \
+  'https://api.uat.pe.researchnow.com/sample/v1/projects?limit=10' \
+  -H 'authorization: Bearer '$AUTH'' \
+  -H 'content-type: application/json'
+```
+
+CURLstdout:
+
+```json
+{
+  "data": [
+    { "author": { "name": "...", "type": "api", "username": "user..." },
+      "createdAt": "...",
+      "extProjectId": "project001",
+      "jobNumber": "PO-1234",
+      "state": "PROVISIONED",
+      "stateLastUpdatedAt": "...",
+      "title": "Test Survey",
+      "updatedAt": "..." }
+  ],
+  "meta": { "links": { "first":"","...": "...","self":"..." }, "pageSize": 1, "total": 1 },
+  "status": { "errors": [], "message": "success" }
+}
+```
+
+Out of the output we will need the the *extProjectId* element from the *data* array.
+
+---
+
+#### Projects - Get Project BasedOn extProjectId
+
+Use the AUTH env var first.
+
+`export AUTH=............`
+
+```bash
+curl -X GET \
+  https://api.uat.pe.researchnow.com/sample/v1/projects/project001 \
+  -H 'authorization: Bearer '$AUTH'' \
+  -H 'content-type: application/json'
+```
+
+CURLstdout:
+
+```json
+{
+  "data": {
+    "author": { "name": "...", "type": "api", "username": "user.." },
+    "category": {
+      "surveyTopic": [ "AUTOMOTIVE", "BUSINESS" ]
+    },
+    "createdAt": "",
+    "devices": [ "mobile", "desktop", "tablet" ],
+    "exclusions": { "list": null, "type": "PROJECT" },
+    "extProjectId": "project001",
+    "jobNumber": "PO-1234",
+    "lineItems": [
+      {
+        "countryISOCode": "US", "createdAt": "",
+        "daysInField": 20, "deliveryType": "BALANCED",
+        "endLinks": { "complete": "..", "overquota": "..", "screenout": "..",
+          "securityKey1": "93896", "securityKey2": "42614",
+          "securityLevel": "MEDIUM" },
+        "extLineItemId": "lineItem001",
+        "indicativeIncidence": 20, "languageISOCode": "en",
+        "launchedAt": "", "lengthOfInterview": 10,
+        "quotaPlan": {
+          "filters": [
+            {
+              "attributeId": "61961", "operator": "INCLUDE",
+              "options": [ "3", "4" ]
+            }
+          ],
+          "quotaGroups": [
+            {
+              "name": "Gender Distribution",
+              "quotaCells": [
+                { "count": 130,
+                  "perc": 65,
+                  "quotaCellId": "1",
+                  "quotaNodes": [
+                    { "attributeId":"11","operator":"INCLUDE","options": ["1"] }
+                  ] },
+                {
+                  "...": "..."
+                }
+              ],
+              "quotaGroupId": "fc70f967-05b3-49e3-9ec2-af793c474e51"
+            }
+          ]
+        },
+        "requiredCompletes": 200, "sources": [ { "id": 100 } ],
+        "state": "PROVISIONED", "stateLastUpdatedAt": "",
+        "surveyTestURL": "", "surveyURL": "",
+        "targets": [
+          { "count":2, "dailyLimit":0, "softLaunch":0, "type":"COMPLETE" }
+        ],
+        "title": "US College",
+        "updatedAt": ""
+      }
+    ],
+    "notificationEmails": [ "api-test@dynata.com" ],
+    "respondentFilters": [ { "list":null, "type":"PROJECT" } ],
+    "state": "PROVISIONED", "stateLastUpdatedAt": "",
+    "title": "Test Survey", "updatedAt": ""
+  },
+  "meta": null,
+  "status": { "errors": [], "message": "success" }
+}
+```
+
+From the output json object the focus needs to be on *countryISOCode*, *filters*, *quotaGroups*, *requiredCompletes*.
+
+---
+
 ### CrowdEmotion Developer Exercise: Solution: Prerequisites
 
 To run the **back-end** all you need is a dev machine and here, the preferred OS is Ubuntu and on it make sure you have:
