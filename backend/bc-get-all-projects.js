@@ -13,7 +13,7 @@ const options = { method: 'GET',
 		{ authorization: '', // 'Bearer '+auth
 		'content-type': 'application/json' } };
 
-if (auth != '') {
+if (auth) {
 	options.headers.authorization = 'Bearer '+auth;
 	const call = request(options);
 	call.then( function(r) {
