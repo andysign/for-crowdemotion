@@ -231,6 +231,45 @@ From the output json object the focus needs to be on *countryISOCode*, *filters*
 
 ---
 
+#### Projects - Get All Countries
+
+Use the AUTH env var first.
+
+`export AUTH=............`
+
+```bash
+curl -X GET \
+  'https://api.uat.pe.researchnow.com/sample/v1/countries?limit=10' \
+  -H 'authorization: Bearer '$AUTH'' \
+  -H 'content-type: application/json'
+```
+
+CURLstdout:
+
+```json
+{
+  "data": [
+    {
+      "countryName": "Canada", "id": "CA",
+      "isoCode": "CA",
+      "supportedLanguages": [
+        { "id": "en", "isoCode": "en", "languageName": "English (CA)" },
+        { "id": "fr", "isoCode": "fr", "languageName": "French (CA)" }
+      ]
+    },
+  ],
+  "meta": {
+    "links": { "first": "..","last": "","next": "","prev": "","self": ""},
+    "pageSize": 10, "total": 48
+  },
+  "status": { "errors": [], "message": "success" }
+}
+```
+
+From the output json object the *isoCode* will need to be used later.
+
+---
+
 ### CrowdEmotion Developer Exercise: Solution: Prerequisites
 
 To run the **back-end** all you need is a dev machine and here, the preferred OS is Ubuntu and on it make sure you have:
