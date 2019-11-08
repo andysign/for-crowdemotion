@@ -10,7 +10,7 @@ const password = prc.argv[2] ? prc.argv[2]: prc.env.PASSWORD;
 const url = 'https://api.uat.pe.researchnow.com/auth/v1/token/password';
 
 const options = { method: 'POST',
-	uri: url,
+	url: url,
 	headers: { 'content-type': 'application/json' },
 	body: {
 		clientId: 'api',
