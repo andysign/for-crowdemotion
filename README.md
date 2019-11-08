@@ -270,6 +270,45 @@ From the output json object the *isoCode* will need to be used later.
 
 ---
 
+#### Projects - Update Project BasedOn extProjectId
+
+Use the AUTH env var first.
+
+`export AUTH=............`
+
+Then to change something like the title one can use the following.
+
+```bash
+curl -X POST \
+  https://api.uat.pe.researchnow.com/sample/v1/projects/project001 \
+  -H 'authorization: Bearer '$AUTH'' \
+  -H 'content-type: application/json' \
+  -d '{
+  "title": "Automotive Study Edit One"
+}'
+```
+
+CURLstdout:
+
+```json
+{
+  "data": {
+    "author": "...", "category": "...",
+    "createdAt": "...", "devices": "...",
+    "exclusions": "...", "extProjectId": "...",
+    "jobNumber": "...", "lineItems": "...",
+    "notificationEmails": "...", "state": "...",
+    "stateLastUpdatedAt": "...",
+    "title": "Automotive Study Edit One"
+  },
+  "meta": null, "status": { "errors":[],"message":"success" }
+}
+```
+
+The output json file should include the change.
+
+---
+
 ### CrowdEmotion Developer Exercise: Solution: Prerequisites
 
 To run the **back-end** all you need is a dev machine and here, the preferred OS is Ubuntu and on it make sure you have:
