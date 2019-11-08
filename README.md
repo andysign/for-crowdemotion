@@ -70,3 +70,49 @@ Here are in exat detail the requirements for this test.
 > All the deliverables should be sent back to Crowd Emotion for a subsequent discussion session.
 
 ---
+
+## CrowdEmotion Developer Exercise: Solution
+
+As a solution for this exercise, I have decided to divide the project in two parts (**back-end** and **front-end**) and run those parts in *Docker* on the same machine.
+
+---
+
+### CrowdEmotion Developer Exercise: Solution: API Dynata Connections
+
+In order to connect to the *Dynata API* the following API end-points will be used (with the assumption that access *username* and *password* is known and at least one *survey* was created in advance).
+
+---
+
+#### Auth - Get Authorization Token
+
+First add your password into your PASSWORD env var.
+
+`export PASSWORD=v.......`
+
+```bash
+curl -X POST \
+  https://api.uat.pe.researchnow.com/auth/v1/token/password \
+  -H 'content-type: application/json' \
+  -d '{
+  "clientId": "api",
+  "password": "'$PASSWORD'",
+  "username": "crowd_emotion_sample_api"
+}
+'
+```
+
+CURLstdout:
+
+```json
+{ "accessToken": "...", "expiresIn": 7200, "refreshExpiresIn": 43200,"refreshToken": "..." }
+```
+
+---
+
+### CrowdEmotion Developer Exercise: Solution: Prerequisites
+
+To run the **back-end** all you need is a dev machine and here, the preferred OS is Ubuntu and on it make sure you have:
+
+* Docker version `19.03.4`, build 9013bf583a or higher
+
+---
