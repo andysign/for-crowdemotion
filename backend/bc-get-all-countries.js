@@ -1,3 +1,9 @@
+/*
+* Backend Get All Countries
+* Usage: node bc-get-all-countries.js
+* UsageAsModule:require('./bc-get-all-countries').getAllCountries().then()
+* UsageAsModuleAwait: await require('./bc-get-all-countries').getAllCountries()
+*/
 const request = require("request-promise"); // var request = require("request");
 const getAuthToken = require('./bc-get-auth-token');
 
@@ -7,7 +13,7 @@ const getAllCountries = function (prj, body) {
 			const url='https://api.uat.pe.researchnow.com/sample/v1/countries';
 			const options = { method: 'GET',
 				url: url,
-				qs: { limit: '10' },
+				qs: { limit: '200' },
 				headers:
 					{	authorization: 'Bearer '+auth+'',
 						'content-type': 'application/json' } };
