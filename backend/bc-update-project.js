@@ -11,7 +11,7 @@ const updateProject = function (prj, body) {
 	prj = prj === undefined ? 'project001' : prj;
 	body = body === undefined ? '{"title":"Text"}' : body;
 	return new Promise( function (res, rej) {
-		require('./bc-get-auth-token').getAuth().then(function(auth){
+		getAuthToken.getAuth().then(function(auth){
 			const path= 'sample/v1/projects/';
 			const domain = 'https://api.uat.pe.researchnow.com/';
 			const url = domain + path + prj;
