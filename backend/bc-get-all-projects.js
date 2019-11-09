@@ -3,8 +3,7 @@
 * Usage: node bc-get-all-projects.js auth
 * UsageAsModule: require('./bc-get-all-projects')
 */
-const request = require("request-promise");
-// var request = require("request");
+const request = require("request-promise"); // var request = require("request");
 const getAuthToken = require('./bc-get-auth-token');
 
 const prc = process;
