@@ -5,8 +5,8 @@
 */
 const request = require('request-promise');
 
-const prc = process;
-const password = prc.argv[2] ? prc.argv[2]: prc.env.PASSWORD;
+const p = process;
+const password=require.main===module?(p.argv[2]||p.env.PASSWORD):p.env.PASSWORD;
 const url = 'https://api.uat.pe.researchnow.com/auth/v1/token/password';
 
 const options = { method: 'POST',
