@@ -7,6 +7,17 @@ var auth = require('basic-auth');
 var adminUsername = 'admin'; // Use curl with Authorization: header
 var adminPassword = 'password'; // Basic YWRtaW46cGFzc3dvcmQ
 
+var middleware = function (req, res, next) {
+	var obj = auth(req);
+	if (!obj || obj.name!==adminUsername || obj.pass!==adminPassword) {
+		next(createError(401)); //res.set('WWW-Authenticate','Basic realm=""');
+	}
+	next();
+}
+
+var adminUsername = 'admin'; // Use curl with Authorization: header
+var adminPassword = 'password'; // Basic YWRtaW46cGFzc3dvcmQ
+
 // routes definitions
 var indexRouter = require('./routes/index');
 
@@ -22,6 +33,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false})); //use querystring to parse
 
+// start
 app.get('/', indexRouter);
 app.get('/auth', function (req, res, next) {
 	require('./bc-get-auth-token').getAuth().then(function(r){
@@ -36,11 +48,9 @@ app.post('/login', function (req, res, next) {
 	var bfr = new Buffer.from(obj.username+":"+obj.password).toString('base64');
 	res.json({AuthorizationBasic: bfr}); // YWRtaW46cGFzc3dvcmQ=
 });
+// start private
+app.use(middleware);
 app.get('/profile', function (req, res, next) {
-	var obj = auth(req);
-	if (!obj || obj.name!==adminUsername || obj.pass!==adminPassword) {
-		next(createError(401));
-	}
 	res.send('Access granted');
 });
 
