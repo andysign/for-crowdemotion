@@ -2,7 +2,7 @@
   "name": "root",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./bin/www",
   "dependencies": {
     "express": "^4.17.1",
     "morgan": "^1.9.1",
@@ -10,7 +10,11 @@
     "request-promise": "^4.2.5"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+    "start": "node ./bin/www",
+    "startdev": "NODE_ENV=development nodemon -e js ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "Andy B.",
-  "license": "TBD"
+  "license": "ISC"
 }
