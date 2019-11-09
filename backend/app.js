@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
 var cors = require('cors');
+var auth = require('basic-auth');
 
 var adminUsername = 'admin'; // Use curl with Authorization: header
 var adminPassword = 'password'; // Basic YWRtaW46cGFzc3dvcmQ
@@ -35,7 +36,6 @@ app.post('/login', function (req, res, next) {
 	res.json({AuthorizationBasic: 'YWRtaW46cGFzc3dvcmQ='}); //base64(u:pwd)
 });
 app.get('/profile', function (req, res, next) {
-	var auth = require('basic-auth');
 	var obj = auth(req);
 	if (!obj || obj.name!==adminUsername || obj.pass!==adminPassword) {
 		next(createError(401));
