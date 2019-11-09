@@ -12,6 +12,9 @@ RUN sudo apt-get install -y software-properties-common
 RUN curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 RUN sudo apt-get install -y nodejs
 
+RUN npm install -g nodemon
+# RUN npm i --global @babel/node @babel/core @babel/cli
+
 WORKDIR /root/
 
 # CMD npm i && npm start
