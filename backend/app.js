@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
+var cors = require('cors');
 
 var app = express();
 
@@ -8,9 +9,8 @@ var app = express();
 app.set('json spaces', 40);
 
 // log only 4xx and 5xx responses to console
-app.use(logger('dev', {
-	skip: function (req, res) { return res.statusCode < 400 }
-}));
+app.use(logger('dev', {skip: function (req, res){return res.statusCode<400}}));
+app.use(cors());
 app.use(express.json());
 
 app.get('/', function (req, res, next) {
