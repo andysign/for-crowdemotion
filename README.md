@@ -316,3 +316,36 @@ To run the **back-end** all you need is a dev machine and here, the preferred OS
 * Docker version `19.03.4`, build 9013bf583a or higher
 
 ---
+
+### CrowdEmotion Developer Exercise: Solution: Running The Backend
+
+To run the back-end either from the docker container bash or the host machine terminal first make sure everything is initialized:
+
+`npm i`
+
+Then run:
+
+`npm run start`
+
+to run in normal production mode or for *development* mode:
+
+`npm run startdev`
+
+In dev mode you will see nodemon starting and showing the greeting _[nodemon] 1.19.4_.
+
+---
+
+### CrowdEmotion Developer Exercise: Solution: API Connections
+
+After creating the PASSWORD env, you can run the backend with `npm run start` either in your normal host machine or inside a docker container virtual machine then you can test all the BackendAPI end-points with curl like described below.
+
+* **Login**: <br><br>
+`curl -X POST -d '{"username":"admin","password":"password"}' -H "Content-Type: application/json" localhost:3000/login` <br><br>
+CURLstdout:
+```json
+{
+    "AuthorizationBasic": "YWRtaW46cGFzc3dvcmQ="
+}
+```
+
+---
