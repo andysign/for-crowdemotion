@@ -12,7 +12,7 @@ app.set('json spaces', 40);
 app.use(logger('dev', {skip: function (req, res){return res.statusCode<400}}));
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false})); //use querystring to parse
 
 app.get('/', function (req, res, next) {
 	res.send('Index Page!\n');
