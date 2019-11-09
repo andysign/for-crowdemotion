@@ -1,3 +1,8 @@
+/*
+* Backend Update a Given Projects With Given Data
+* Usage: node bc-update-project.js 'project001' '{"title":"Text"}'
+* UsageAsModule: require('./bc-update-project')
+*/
 const request = require("request-promise");
 // var request = require("request");
 const getAuthToken = require('./bc-get-auth-token');
