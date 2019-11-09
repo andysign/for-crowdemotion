@@ -1,7 +1,11 @@
+var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
 
 var app = express();
+
+// view engine setup
+app.set('json spaces', 40);
 
 // log only 4xx and 5xx responses to console
 app.use(logger('dev', {
