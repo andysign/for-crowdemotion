@@ -33,7 +33,8 @@ app.post('/login', function (req, res, next) {
 	if (!obj || obj.username!==adminUsername || obj.password!==adminPassword) {
 		next(createError(401));
 	}
-	res.json({AuthorizationBasic: 'YWRtaW46cGFzc3dvcmQ='}); //base64(u:pwd)
+	var bfr = new Buffer.from(obj.username+":"+obj.password).toString('base64');
+	res.json({AuthorizationBasic: bfr}); // YWRtaW46cGFzc3dvcmQ=
 });
 app.get('/profile', function (req, res, next) {
 	var obj = auth(req);
