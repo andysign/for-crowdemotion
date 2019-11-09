@@ -7,7 +7,7 @@
 const request = require("request-promise"); // var request = require("request");
 const getAuthToken = require('./bc-get-auth-token');
 
-const getAllCountries = function (prj, body) {
+const getAllCountries = function () {
 	return new Promise( function (res, rej) {
 		getAuthToken.getAuth().then(function(auth){
 			const url='https://api.uat.pe.researchnow.com/sample/v1/countries';
