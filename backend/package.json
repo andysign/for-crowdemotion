@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "startdev": "NODE_ENV=development nodemon -e js ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./bc-get-auth-token.js"
   },
   "author": "Andy B.",
   "license": "ISC"
