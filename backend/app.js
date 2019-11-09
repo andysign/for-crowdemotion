@@ -3,6 +3,10 @@ var express = require('express');
 var logger = require('morgan');
 var cors = require('cors');
 
+// routes definitions
+var indexRouter = require('./routes/index');
+
+// app definition
 var app = express();
 
 // view engine setup
@@ -14,9 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false})); //use querystring to parse
 
-app.get('/', function (req, res, next) {
-	res.send('Index Page!\n');
-});
+app.get('/', indexRouter);
 app.get('/auth', function (req, res, next) {
 	require('./bc-get-auth-token').getAuth().then(function(r){
 		res.json({"accessToken":r});
