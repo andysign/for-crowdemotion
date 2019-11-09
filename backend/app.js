@@ -3,6 +3,9 @@ var express = require('express');
 var logger = require('morgan');
 var cors = require('cors');
 
+var adminUsername = 'admin'; // Use curl with Authorization: header
+var adminPassword = 'password'; // Basic YWRtaW46cGFzc3dvcmQ
+
 // routes definitions
 var indexRouter = require('./routes/index');
 
@@ -23,6 +26,21 @@ app.get('/auth', function (req, res, next) {
 	require('./bc-get-auth-token').getAuth().then(function(r){
 		res.json({"accessToken":r});
 	});
+});
+app.post('/login', function (req, res, next) {
+	var obj = req.body;
+	if (!obj || obj.username!==adminUsername || obj.password!==adminPassword) {
+		next(createError(401));
+	}
+	res.json({AuthorizationBasic: 'YWRtaW46cGFzc3dvcmQ='}); //base64(u:pwd)
+});
+app.get('/profile', function (req, res, next) {
+	var auth = require('basic-auth');
+	var obj = auth(req);
+	if (!obj || obj.name!==adminUsername || obj.pass!==adminPassword) {
+		next(createError(401));
+	}
+	res.send('Access granted');
 });
 
 // catch 404 and forward to error handler
