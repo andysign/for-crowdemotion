@@ -1,7 +1,8 @@
 /*
 * Backend Get All Projects If Any Else Empty Array
-* Usage: node bc-get-all-projects.js auth
-* UsageAsModule: require('./bc-get-all-projects')
+* Usage: node bc-get-all-projects.js
+* UsageAsModule: require('./bc-get-all-projects').getAllProjects().then()
+* UsageAsModuleAwait: await require('./bc-get-all-projects').getAllProjects()
 */
 const request = require("request-promise"); // var request = require("request");
 const getAuthToken = require('./bc-get-auth-token');
