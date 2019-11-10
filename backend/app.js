@@ -33,6 +33,7 @@ app.use(express.urlencoded({extended: false})); //use querystring to parse
 // routes definitions
 var indexRouter = require('./routes/index');
 var getAllCountriesRouter = require('./routes/get-all-countries');
+var getAllProjectsRouter = require('./routes/get-all-projects');
 
 // start
 app.get('/', indexRouter);
@@ -51,10 +52,8 @@ app.post('/login', function (req, res, next) {
 });
 // start private by setting up the restricted middleware
 app.use(restricted);
-app.get('/profile', function (req, res, next) {
-	res.send('Access granted');
-});
 app.get('/get-all-countries', getAllCountriesRouter);
+app.get('/get-all-projects', getAllProjectsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
