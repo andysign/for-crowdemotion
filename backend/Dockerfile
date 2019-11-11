@@ -17,8 +17,8 @@ RUN npm install -g nodemon
 
 WORKDIR /root/
 
-# CMD npm i && npm start
-# CMD npm i && DEBUG=api:* npm start
+# CMD npm i && npm run start
+# CMD npm i && /bin/bash
 CMD /bin/bash
 
 # sudo chmod 777 backend/
