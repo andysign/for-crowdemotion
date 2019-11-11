@@ -25,7 +25,7 @@ class BackendSdk {
 		}
 	}
 
-	static getErrorState(state, message){
+	static getErrorState(status, message){
 		// this is passed to the callback when the API call has an error
 		return {
 			isSucessful: false,
@@ -40,16 +40,16 @@ class BackendSdk {
 			if (!response.ok) {
 				cb(BackendSdk.getErrorState(response.status,response.statusText)
 				);
-			}
-
-			try {
-				let result = response.json();
-				result.then( (result) => {
-					 cb(BackendSdk.getSuccessfullState(result));
-				} );
-			}
-			catch(error) {
-				cb(BackendSdk.getErrorState('', error.message));
+			} else {
+				try {
+					let result = response.json();
+					result.then( (result) => {
+						 cb(BackendSdk.getSuccessfullState(result));
+					} );
+				}
+				catch(error) {
+					cb(BackendSdk.getErrorState('', error));
+				}
 			}
 
 		})
