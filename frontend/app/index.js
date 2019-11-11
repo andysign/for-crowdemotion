@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CookiesProvider } from 'react-cookie';
+import App from './components/App';
+// import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
-	<CookiesProvider>
-		<div>APP</div>
-	</CookiesProvider>,
+	<App />,
 	document.getElementById('app')
 );
+
+// ReactDOM.render(
+// 	<CookiesProvider>
+// 		<div>APP</div>
+// 	</CookiesProvider>,
+// 	document.getElementById('app')
+// );
