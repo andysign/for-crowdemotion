@@ -1,13 +1,13 @@
 /*
 * Backend Get All Demographic Attributes
 * Usage: node bc-get-all-attributes.js
-* UsageAsModule: require('./bc-get-all-attributes').bcGetAllAttributes().then()
-* UsageWithAwait: await require('./bc-get-all-attributes').bcGetAllAttributes()
+* UsageAsModule: require('./bc-get-all-attributes').getAllAttributes().then()
+* UsageWithAwait: await require('./bc-get-all-attributes').getAllAttributes()
 */
 const request = require("request-promise"); // var request = require("request");
 const getAuthToken = require('./bc-get-auth-token');
 
-const bcGetAllAttributes = function (countryCode, languageCode) {
+const getAllAttributes = function (countryCode, languageCode) {
 	return new Promise( function (res, rej) {
 		getAuthToken.getAuth().then(function(auth){
 			var defCC = 'US';
@@ -29,6 +29,6 @@ const bcGetAllAttributes = function (countryCode, languageCode) {
 	} );
 }
 
-module.exports = { bcGetAllAttributes: bcGetAllAttributes }
+module.exports = { getAllAttributes: getAllAttributes }
 
-if (require.main === module) bcGetAllAttributes().then(console.log);
+if (require.main === module) getAllAttributes().then(console.log);
