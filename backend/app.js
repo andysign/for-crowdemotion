@@ -58,6 +58,7 @@ app.post('/login', function (req, res, next) {
 // start private by setting up the restricted middleware
 app.use(restricted);
 app.get('/get-all-countries', getAllCountriesRouter);
+app.get('/get-all-projects', getAllProjectsRouter);
 app.get('/get-project', getProjectRouterDefault);
 app.get('/get-project/:extProjectId', getProjectRouter);
 app.post('/update-project/:extProjectId', updateProjectRouter);
