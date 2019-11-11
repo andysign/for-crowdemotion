@@ -337,9 +337,10 @@ In dev mode you will see nodemon starting and showing the greeting _[nodemon] 1.
 
 ### CrowdEmotion Developer Exercise: Solution: API Connections
 
-After creating the PASSWORD env, you can run the backend with `npm run start` either in your normal host machine or inside a docker container virtual machine then you can test all the BackendAPI end-points with curl like described below.
+After creating the PASSWORD env, you can run the backend with `npm run start` either in your normal host machine or inside a docker container virtual machine then you can test all the BackendAPI end-points with curl because those end-points will be used to provide the solutions to all use cases described at the beginning:
 
-* **Login**: <br><br>
+0. **A user should be able to LOGIN**: <br>
+The assumption is we have only one user, this user will need a token for all the other api calls.<br><br>
 `curl -X POST -d '{"username":"admin","password":"password"}' -H "Content-Type: application/json" localhost:3000/login` <br><br>
 CURLstdout:
 ```json
@@ -347,5 +348,38 @@ CURLstdout:
     "AuthorizationBasic": "YWRtaW46cGFzc3dvcmQ="
 }
 ```
+
+1. **A user should be able to give a name to a survey**: <br>
+The assumptoin here is there is already a small project already defined called called *project001* and therefore the user on the api can use the following to change it's name: <br><br>
+`curl -XPOST -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" -H "Content-Type: application/json" -d '{"title":"NewTitle"}' localhost:3000/update-project/project001` <br><br>
+CURLstdout:<br>
+```json
+{
+  "data": {
+    "author": "...", "category": "...",
+    "createdAt": "...", "devices": "...",
+    "exclusions": "...", "extProjectId": "...",
+    "jobNumber": "...", "lineItems": "...",
+    "notificationEmails": "...", "state": "...",
+    "stateLastUpdatedAt": "...",
+    "title": "NewTitle"
+  },
+  "meta": null, "status": { "errors":[],"message":"success" }
+}
+```
+User can check the result calling the api again with a specific sub-path at the end like for example project001: <br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" localhost:3000/get-project/project001` <br>
+Or can just grab all the projects with: <br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" localhost:3000/get-all-projects`
+
+2. **A user should be able to select a country**
+
+3. **A user should be able to select a few attributes like age, gender, etc**
+
+4. **A user should be able to select the number of respondents in the panel**
+
+5. **A user should be able to submit the selection**
+
+6. **A user should be able to see how it’s survey has been configured**
 
 ---
