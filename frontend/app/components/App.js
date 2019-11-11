@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from './login/Login';
+import fontstyle from './static/fa/FontAwesome.css';
 import styles from './static/App.css';
-import fa from './static/fa/FontAwesome.css';
 
 class App extends React.Component {
 	constructor(props) {
