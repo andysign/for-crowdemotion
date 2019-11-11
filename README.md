@@ -268,6 +268,8 @@ CURLstdout:
 
 From the output json object the *isoCode* will need to be used later.
 
+One can call the api to update the project and change the country code by using a data object like: `{ "lineItems": [ { "countryISOCode": "US", "extLineItemId": "lineItem001" } ] }`
+
 ---
 
 #### Projects - Update Project BasedOn extProjectId
@@ -306,6 +308,102 @@ CURLstdout:
 ```
 
 The output json file should include the change.
+
+---
+
+#### Projects - Update Project Filter BasedOn extProjectId
+
+Use the AUTH env var first: `export AUTH=............`
+
+There are multiple attributes but we will focus on the gender one and according to the get-attributes api result, this attribute is market as id 11 and it has two options, 1 and 2 and the attribute has the INCLUDE operator more which means we can change the filter to focus only on femail participants with something like:
+
+```bash
+curl -X POST \
+  https://api.uat.pe.researchnow.com/sample/v1/projects/project001 \
+  -H 'authorization: Bearer '$AUTH'' \
+  -H 'content-type: application/json' \
+  -d '{
+  "lineItems": [
+    {
+      "extLineItemId": "lineItem001",
+      "quotaPlan": {
+        "filters": [
+            { "attributeId": "11", "operator": "INCLUDE",
+                "options": [ "1" ] }
+        ]
+      }
+    }
+  ]
+}'
+```
+
+CURLstdout:
+
+```json
+{
+  "data": {
+    "author": "...",
+    "...": "...",
+    "extProjectId": "project001",
+    "lineItems": [
+      {
+        "..": "...",
+        "quotaPlan": {
+          "filters": [
+            {
+              "attributeId": "61961", "operator": "INCLUDE",
+              "options": [ "3", "4" ]
+            }
+          ],
+          "quotaGroups": []
+        },
+        "targets": [
+          { "count":2, "dailyLimit":0, "softLaunch":0, "type":"COMPLETE" }
+        ]
+      }
+    ],
+    "title": "Test Survey", "..": "...",
+  },
+  "meta": null,
+  "status": { "errors": [], "message": "success" }
+}
+```
+
+---
+
+#### Projects - Update Project Target Count BasedOn extProjectId
+
+One can change the target count based on the following data command after setting up AUTH:
+
+```bash
+curl -X POST \
+  https://api.uat.pe.researchnow.com/sample/v1/projects/project001 \
+  -H 'authorization: Bearer '$AUTH'' \
+  -H 'content-type: application/json' \
+  -d '{ "lineItems": [
+      { "extLineItemId": "lineItem001",
+        "targets": [ { "count": 200 } ]
+      }
+    ]
+  }
+'
+```
+
+CURLstdout:
+
+```json
+{
+  "data": {
+    "author": "...", "...": "...",
+    "extProjectId": "project001",
+    "lineItems": [
+      { "..": "..." }
+    ],
+    "title": "Test Survey", "..": "...",
+  },
+  "meta": null, "status": { "errors": [], "message": "success" }
+}
+```
 
 ---
 
