@@ -369,6 +369,34 @@ CURLstdout:
 }
 ```
 
+You can get all the attributes by executing the following curl command:
+
+```bash
+curl -X GET \
+  'https://api.uat.pe.researchnow.com/sample/v1/attributes/US/en?offset=0&limit=100' \
+  -H 'authorization: Bearer '$AUTH'' \
+  -H 'content-type: application/json'
+```
+
+```json
+{   "data": [
+        {
+            "category": { "mainCategory": { "id": "DEMOGRAPHIC", "localizedText": "Demographic", "text": "Demographic" } },
+            "id": "11",
+            "isAllowedInFilters": true, "isAllowedInQuotas": true,
+            "localizedText": "What is your gender?",
+            "name": "Gender",
+            "options": [
+                { "id": "1", "localizedText": "Male", "text": "Male" },
+                { "id": "2", "localizedText": "Female", "text": "Female" }
+            ],
+            "state": "ACTIVE",
+            "text": "What is your gender?", "tier": "Standard", "type": "LIST"
+        }
+    ]
+}
+```
+
 ---
 
 #### Projects - Update Project Target Count BasedOn extProjectId
@@ -505,7 +533,7 @@ CURLstdout:<br>
       ]
   }, "..": ".." }
 ```
-Note that the filter attribute that contains data about gender demography is 11 where the first option is female and the second one is male: more can be found here: `https://api.researchnow.com/sample/v1/attributes/{countryCode}/{languageCode}` described [here](https://developers.dynata.com/demand-api-reference/data_endpoints/attributes/get-attributes).
+Note that the filter attribute that contains data about gender demography is 11 where the first option is male and the second one is female.
 
 4. **A user should be able to select the number of respondents in the panel**: <br>
 In order to change the number of respondents in the panel, with the assumption that you are trying to change *project001* and there in that project you are trying to change *lineItem001* then you can do something like: <br>
