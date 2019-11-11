@@ -509,14 +509,15 @@ Note that the filter attribute that contains data about gender demography is 11 
 
 4. **A user should be able to select the number of respondents in the panel**: <br>
 In order to change the number of respondents in the panel, with the assumption that you are trying to change *project001* and there in that project you are trying to change *lineItem001* then you can do something like: <br>
-`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" -H "Content-Type: application/json" -d '{ "lineItems": [ {"extLineItemId":"lineItem001","targets":[{"count":200}]} ] }' localhost:3000/update-project/project001` <br><br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" -H "Content-Type: application/json" -d '{ "lineItems": [ {"extLineItemId":"lineItem001","targets":[{"count":200,"type":"COMPLETE"}]} ] }' localhost:3000/update-project/project001` <br><br>
 CURLstdout:<br>
 ```json
 { "data": {
-    "lineItems":
-        [ { "extLineItemId":"lineItem001", "targets":[{"count":200}] } ]
-    },
-    "..": ".."
+    "lineItems": [
+        {
+            "extLineItemId":"lineItem001", "targets":[{"count":200,"type":"COMPLETE"}]
+        } ]
+    }, "..": ".."
 }
 ```
 
