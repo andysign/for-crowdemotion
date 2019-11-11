@@ -533,7 +533,9 @@ CURLstdout:<br>
       ]
   }, "..": ".." }
 ```
-Note that the filter attribute that contains data about gender demography is 11 where the first option is male and the second one is female.
+Note that the filter attribute that contains data about gender demography is 11 where the first option is male and the second one is female. More details can be found using the following curl: <br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" localhost:3000/get-all-attributes` or <br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" localhost:3000/get-all-attributes/CA/fr`
 
 4. **A user should be able to select the number of respondents in the panel**: <br>
 In order to change the number of respondents in the panel, with the assumption that you are trying to change *project001* and there in that project you are trying to change *lineItem001* then you can do something like: <br>
