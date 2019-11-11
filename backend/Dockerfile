@@ -14,6 +14,7 @@ RUN sudo apt-get install -y nodejs
 
 RUN npm install -g nodemon
 # RUN npm i --global @babel/node @babel/core @babel/cli
+# RUN npm install @babel/preset-env --save-dev
 
 WORKDIR /root/
 
