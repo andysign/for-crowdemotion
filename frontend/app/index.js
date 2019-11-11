@@ -5,6 +5,6 @@ import { CookiesProvider } from 'react-cookie';
 ReactDOM.render(
 	<CookiesProvider>
 		<div>APP</div>
-	</ CookiesProvider>,
+	</CookiesProvider>,
 	document.getElementById('app')
 );
