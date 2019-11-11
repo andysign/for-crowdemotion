@@ -9,13 +9,20 @@ class App extends React.Component {
 		this.state = {
 			authToken: null
 		}
+		this.onLoginHandler = this.onLoginHandler.bind(this);
+	}
+
+	onLoginHandler (token) {
+		this.setState({
+			authToken: token
+		});
 	}
 
 	render() {
 		if (this.state.authToken) {
 			return <><span>LoggedIn</span></>
 		} else {
-			return <><Login /></>
+			return <Login onLoginHandler={this.onLoginHandler} />
 		}
 	}
 }

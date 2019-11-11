@@ -27,7 +27,7 @@ class LoginView extends React.Component {
 		sdk.login(this.state.username, this.state.password, (response)=>{
 			if (response.isSucessful) {
 				this.setState(response);
-				console.log(response.data.AuthorizationBasic);
+				this.props.onLoginHandler(response.data.AuthorizationBasic);
 			}
 			else {
 				this.setState(response);
