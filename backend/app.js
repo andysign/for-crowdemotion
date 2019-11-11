@@ -37,6 +37,8 @@ var getAllProjectsRouter = require('./routes/get-all-projects');
 var getProjectRouterDefault = require('./routes/get-project').routerDefault;
 var getProjectRouter = require('./routes/get-project').router;
 var updateProjectRouter = require('./routes/update-project');
+var attributesRouterDefault=require('./routes/get-all-attributes').routerDefault
+var attributesRouter=require('./routes/get-all-attributes').router;
 
 // start
 app.get('/', indexRouter);
@@ -62,6 +64,8 @@ app.get('/get-all-projects', getAllProjectsRouter);
 app.get('/get-project', getProjectRouterDefault);
 app.get('/get-project/:extProjectId', getProjectRouter);
 app.post('/update-project/:extProjectId', updateProjectRouter);
+app.get('/get-all-attributes', attributesRouterDefault);
+app.get('/get-all-attributes/:countryCode/:languageCode', attributesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
