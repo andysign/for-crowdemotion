@@ -507,9 +507,21 @@ CURLstdout:<br>
 ```
 Note that the filter attribute that contains data about gender demography is 11 where the first option is female and the second one is male: more can be found here: `https://api.researchnow.com/sample/v1/attributes/{countryCode}/{languageCode}` described [here](https://developers.dynata.com/demand-api-reference/data_endpoints/attributes/get-attributes).
 
-4. **A user should be able to select the number of respondents in the panel**
+4. **A user should be able to select the number of respondents in the panel**: <br>
+In order to change the number of respondents in the panel, with the assumption that you are trying to change *project001* and there in that project you are trying to change *lineItem001* then you can do something like: <br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" -H "Content-Type: application/json" -d '{ "lineItems": [ {"extLineItemId":"lineItem001","targets":[{"count":200}]} ] }' localhost:3000/update-project/project001` <br><br>
+CURLstdout:<br>
+```json
+{ "data": {
+    "lineItems":
+        [ { "extLineItemId":"lineItem001", "targets":[{"count":200}] } ]
+    },
+    "..": ".."
+}
+```
 
-5. **A user should be able to submit the selection**
+5. **A user should be able to submit the selection**: <br>
+All or the above could be, with the right json object, submitted and therefore saved in the Dynata system.
 
 6. **A user should be able to see how it’s survey has been configured**
 
