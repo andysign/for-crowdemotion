@@ -34,6 +34,8 @@ app.use(express.urlencoded({extended: false})); //use querystring to parse
 var indexRouter = require('./routes/index');
 var getAllCountriesRouter = require('./routes/get-all-countries');
 var getAllProjectsRouter = require('./routes/get-all-projects');
+var getProjectRouterDefault = require('./routes/get-project').routerDefault;
+var getProjectRouter = require('./routes/get-project').router;
 
 // start
 app.get('/', indexRouter);
@@ -53,7 +55,8 @@ app.post('/login', function (req, res, next) {
 // start private by setting up the restricted middleware
 app.use(restricted);
 app.get('/get-all-countries', getAllCountriesRouter);
-app.get('/get-all-projects', getAllProjectsRouter);
+app.get('/get-project', getProjectRouterDefault);
+app.get('/get-project/:extProjectId', getProjectRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
