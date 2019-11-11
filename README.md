@@ -470,9 +470,42 @@ User can check the result calling the api again with a specific sub-path at the 
 Or can just grab all the projects with: <br>
 `curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" localhost:3000/get-all-projects`
 
-2. **A user should be able to select a country**
+2. **A user should be able to select a country**: <br>
+In order to change the targeted country of a project you need to get the country codes using the countries api end-point: <br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" localhost:3000/get-all-countries` <br>
+Then after that you can use something like the following to change the countryCode and supportedLanguages:
+`curl -XPOST -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" -H "Content-Type: application/json" -d '{"lineItems": [{ "extLineItemId":"lineItem001", "countryISOCode":"CA", "languageISOCode":"fr" }]}' localhost:3000/update-project/project001` <br><br>
+CURLstdout:<br>
+```json
+{
+    "data": {
+        "lineItems": [
+            { "extLineItemId": "lineItem001",
+              "countryISOCode": "CA", "languageISOCode": "fr" }
+        ]
+    }, "...": "..."
+}
+```
 
-3. **A user should be able to select a few attributes like age, gender, etc**
+3. **A user should be able to select a few attributes like age, gender, etc**: <br>
+If we take in consideration the assumption that you are trying to change the demography of *project001* and inside that project change *lineItem001*, to include only female responses then you can use: <br><br>
+`curl -H "Authorization: Basic YWRtaW46cGFzc3dvcmQ" -H "Content-Type: application/json" -d '{"lineItems": [{"extLineItemId":"lineItem001","quotaPlan":{"filters":[{"attributeId": "11","operator":"INCLUDE","options":["1"]}]}}]}' localhost:3000/update-project/project001` <br><br>
+CURLstdout:<br>
+```json
+{ "data": {
+      "lineItems": [
+        { "extLineItemId": "lineItem001",
+          "quotaPlan": {
+            "filters": [
+                { "attributeId": "11", "operator": "INCLUDE",
+                    "options": [ "1" ] }
+            ]
+          }
+        }
+      ]
+  }, "..": ".." }
+```
+Note that the filter attribute that contains data about gender demography is 11 where the first option is female and the second one is male: more can be found here: `https://api.researchnow.com/sample/v1/attributes/{countryCode}/{languageCode}` described [here](https://developers.dynata.com/demand-api-reference/data_endpoints/attributes/get-attributes).
 
 4. **A user should be able to select the number of respondents in the panel**
 
