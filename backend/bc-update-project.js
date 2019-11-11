@@ -9,7 +9,7 @@ const getAuthToken = require('./bc-get-auth-token');
 
 const updateProject = function (prj, body) {
 	prj = prj === undefined ? 'project001' : prj;
-	body = body === undefined ? '{"title":"Text"}' : body;
+	body = body === undefined ? '{"title":"Text"}' : JSON.stringify(body);
 	return new Promise( function (res, rej) {
 		getAuthToken.getAuth().then(function(auth){
 			const path= 'sample/v1/projects/';

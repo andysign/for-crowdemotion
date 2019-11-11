@@ -36,14 +36,17 @@ var getAllCountriesRouter = require('./routes/get-all-countries');
 var getAllProjectsRouter = require('./routes/get-all-projects');
 var getProjectRouterDefault = require('./routes/get-project').routerDefault;
 var getProjectRouter = require('./routes/get-project').router;
+var updateProjectRouter = require('./routes/update-project');
 
 // start
 app.get('/', indexRouter);
+/*
 app.get('/auth', function (req, res, next) {
 	require('./bc-get-auth-token').getAuth().then(function(r){
 		res.json({"accessToken":r});
 	});
 });
+*/
 app.post('/login', function (req, res, next) {
 	var obj = req.body;
 	if (!obj || obj.username!==adminUsername || obj.password!==adminPassword) {
@@ -57,6 +60,7 @@ app.use(restricted);
 app.get('/get-all-countries', getAllCountriesRouter);
 app.get('/get-project', getProjectRouterDefault);
 app.get('/get-project/:extProjectId', getProjectRouter);
+app.post('/update-project/:extProjectId', updateProjectRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
