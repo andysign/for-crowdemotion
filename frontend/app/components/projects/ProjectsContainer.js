@@ -1,5 +1,7 @@
 import React from 'react';
-
+import ProjectsNoDataPage from './ProjectsNoDataPage';
+import ProjectsStatsPage from './ProjectsStatsPage';
+import Project from './Project';
 
 class ProjectsContainer extends React.Component {
 	constructor(props){
@@ -76,33 +78,15 @@ class ProjectsContainer extends React.Component {
 	getContentPage() {
 
 		if (this.props.projects.length == 0) {
-			return <div>NODATA</div>
+			return <ProjectsNoDataPage />
 		}
 
 		if (this.state.selectedProject == null) {
-			return (
-				<div className="col-sm-10 col-12">
-					<div className="tab-content">
-						<div id="tab-0"
-							className="tab-pane fade active show"
-							role="tabpanel"
-						>
-							<h1>Overall Stats Page</h1>
-							<h2>
-								Number Of Projects:
-								<span> {this.props.projects.length}</span>
-							</h2>
-						</div>
-					</div>
-				</div>
-			);
+			return <ProjectsStatsPage len={this.props.projects.length} />
 		}
 
 		return (
-			<div className="col-sm-10 col-12">
-				<h1>{this.state.selectedProject.title}</h1>
-				<h2>Project</h2>
-			</div>
+			<Project selectedProject={this.state.selectedProject} />
 		);
 
 	}
