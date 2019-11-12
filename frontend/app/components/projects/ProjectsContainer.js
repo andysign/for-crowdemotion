@@ -2,6 +2,8 @@ import React from 'react';
 import ProjectsNoDataPage from './ProjectsNoDataPage';
 import ProjectsStatsPage from './ProjectsStatsPage';
 import Project from './Project';
+import Footer from './../common/Footer.js';
+
 
 class ProjectsContainer extends React.Component {
 	constructor(props){
@@ -94,7 +96,10 @@ class ProjectsContainer extends React.Component {
 		}
 
 		return (
-			<Project selectedProject={this.state.selectedProject} />
+			<Project
+				selectedProject={this.state.selectedProject}
+				authToken={this.props.authToken}
+			/>
 		);
 
 	}
@@ -111,7 +116,7 @@ class ProjectsContainer extends React.Component {
 						</div>
 					</div>
 				</div>
-				{/*<Footer />*/}
+				<Footer />
 			</div>
 		);
 	}
