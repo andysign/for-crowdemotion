@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from './../common/Footer';
+import Navbar from './../common/Navbar';
 import BackendSdk from './../../utils/sdk/Sdk';
 
 class LoginView extends React.Component {
@@ -39,6 +40,7 @@ class LoginView extends React.Component {
 	render() {
 		return (
 			<>
+				<Navbar />
 				<div className="bg-light py-3 row">
 					<div className="container">
 						<div className="p-5 col-md-12">

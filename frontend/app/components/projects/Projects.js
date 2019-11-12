@@ -33,6 +33,7 @@ class Projects extends React.Component {
 				<>
 				<ProjectsContainer projects={this.state.data.data}
 					authToken={this.props.authToken}
+					handleLogout={this.props.handleLogout}
 				/>
 				</>
 			);

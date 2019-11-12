@@ -11,6 +11,7 @@ class App extends React.Component {
 			authToken: null
 		}
 		this.onLoginHandler = this.onLoginHandler.bind(this);
+		this.handleLogout = this.handleLogout.bind(this);
 	}
 
 	onLoginHandler (token) {
@@ -19,9 +20,16 @@ class App extends React.Component {
 		});
 	}
 
+	handleLogout() {
+		this.setState({
+			authToken: null
+		});
+	}
+
 	render() {
 		if (this.state.authToken) {
-			return <Projects authToken={this.state.authToken} />
+			return <Projects authToken={this.state.authToken}
+							 handleLogout={this.handleLogout} />
 		} else {
 			return <Login onLoginHandler={this.onLoginHandler} />
 		}

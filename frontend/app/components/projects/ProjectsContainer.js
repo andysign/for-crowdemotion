@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from './../common/Navbar';
 import ProjectsNoDataPage from './ProjectsNoDataPage';
 import ProjectsStatsPage from './ProjectsStatsPage';
 import Project from './Project';
@@ -99,6 +100,7 @@ class ProjectsContainer extends React.Component {
 			<Project
 				selectedProject={this.state.selectedProject}
 				authToken={this.props.authToken}
+				handleLogout={this.props.handleLogout}
 			/>
 		);
 
@@ -107,7 +109,7 @@ class ProjectsContainer extends React.Component {
 	render() {
 		return(
 			<div>
-				{/*<Navbar />*/}
+				<Navbar handleLogout={this.props.handleLogout} />
 				<div className='py-2'>
 					<div className='container'>
 						<div className='row'>
