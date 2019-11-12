@@ -1,7 +1,8 @@
 import React from 'react';
-import Login from './login/Login';
 import fontstyle from './static/fa/FontAwesome.css';
 import styles from './static/App.css';
+import Login from './login/Login';
+import Projects from './projects/Projects.js'
 
 class App extends React.Component {
 	constructor(props) {
@@ -20,7 +21,7 @@ class App extends React.Component {
 
 	render() {
 		if (this.state.authToken) {
-			return <><span>LoggedIn</span></>
+			return <Projects authToken={this.state.authToken} />
 		} else {
 			return <Login onLoginHandler={this.onLoginHandler} />
 		}
