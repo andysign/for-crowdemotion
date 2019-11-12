@@ -80,6 +80,11 @@ class BackendSdk {
 		this.makeRequest(path, "GET", callback);
 	}
 
+	getProject(extProjectId, callback) {
+		const path = BackendSdk.getOrigin()+'/get-project/'+extProjectId;
+		this.makeRequest(path, "GET", callback);
+	}
+
 }
 
 export default BackendSdk;
