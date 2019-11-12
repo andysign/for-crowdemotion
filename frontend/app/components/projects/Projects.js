@@ -15,10 +15,10 @@ class Projects extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getAllPrjData();
+		this.getAllPrjsData();
 	}
 
-	getAllPrjData() {
+	getAllPrjsData() {
 		this.sdk.getAllProjects(response => {this.setState(response);});
 	}
 
