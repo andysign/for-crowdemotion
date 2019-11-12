@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './../common/Footer';
 import BackendSdk from './../../utils/sdk/Sdk';
 
 class LoginView extends React.Component {
@@ -38,11 +39,37 @@ class LoginView extends React.Component {
 	render() {
 		return (
 			<>
-				<form onSubmit={this.handleSubmit}>
-					<input name="username" onChange={this.handleChange} onClick={this.handleChange} />
-					<input name="password" onChange={this.handleChange} onClick={this.handleChange} />
-					<br /><button type="submit"><b>Submit</b></button>
-				</form>
+				<div className="bg-light py-3 row">
+					<div className="container">
+						<div className="p-5 col-md-12">
+							<form onSubmit={this.handleSubmit}>
+								<div className="form-group">
+									<label>Username </label>
+									<input name="username"
+										className="form-control"
+										onChange={this.handleChange}
+										onClick={this.handleChange}
+									/>
+								</div>
+								<div className="form-group">
+									<label>Password </label>
+									<input name="password"
+										className="form-control"
+										onChange={this.handleChange}
+										onClick={this.handleChange}
+									/>
+								</div>
+								<br />
+								<button type="submit"
+									className="btn btn-outline-dark btn-block"
+								>
+									<b>Submit</b>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<Footer />
 			</>
 		);
 	}
