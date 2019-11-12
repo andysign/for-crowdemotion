@@ -39,7 +39,7 @@ class Navbar extends React.Component {
 							<span className={
 								"navbar-text d-flex justify-content-center"}
 							>
-								<b>Dynata Front Panel</b>
+								<b>Front Panel</b>
 							</span>
 						</a>
 
