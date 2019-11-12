@@ -1,6 +1,7 @@
 import React from 'react';
-import BackendSdk from './../../utils/sdk/Sdk';
 import ProjectsContainer from './ProjectsContainer';
+import LoadingSpinner from './../common/LoadingSpinner'
+import BackendSdk from './../../utils/sdk/Sdk';
 
 class Projects extends React.Component {
 	constructor(props) {
@@ -37,7 +38,7 @@ class Projects extends React.Component {
 			);
 		}
 
-		return <>Loding...</>
+		return <LoadingSpinner />
 
 	}
 }
