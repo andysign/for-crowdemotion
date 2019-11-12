@@ -26,28 +26,36 @@ class ProjectsContainer extends React.Component {
 			return (
 				<div className="col-sm-2 col-12">
 					<div className="nav nav-pills flex-column pb-3">
-						<ul>
+						<ul className="nav nav-pills flex-column">
 						<>
 							<>
-								<li>
+								<li className="nav-item">
 									<div>
 										<a
 											href="#"
+											className="nav-link"
+											data-toggle="pill"
 											onClick={()=>(
 												this.handleAllSelection()
 											)}
 										>
 											All Projects
+											<br />
+											<small>
+												<i>(all)</i>
+											</small>
 										</a>
 									</div>
-									<small><i>(all)</i></small>
+
 								</li>
 							</>
 							{projects.map( (project,i)=>{ return (
-								<li key={i}>
+								<li className="nav-item" key={i}>
 									<div>
 										<a
 											href="#"
+											className="nav-link"
+											data-toggle="pill"
 											onClick={()=>(
 												this.handleProjectSelection(
 													project.extProjectId
@@ -55,12 +63,12 @@ class ProjectsContainer extends React.Component {
 											)}
 										>
 											Project #{i+1}:
+											<br />
+											<small>
+												<i>({project.extProjectId})</i>
+											</small>
 										</a>
-										<span> {project.title}</span>
 									</div>
-									<small>
-										<i>({project.extProjectId})</i>
-									</small>
 								</li>
 							); } )}
 						</>
