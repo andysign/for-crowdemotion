@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingSpinner from './../common/LoadingSpinner';
-// import ProjectForm from './ProjectForm.js';
+import ProjectForm from './ProjectForm';
 import BackendSdk from './../../utils/sdk/Sdk';
 
 class Project extends React.Component {
@@ -11,14 +11,22 @@ class Project extends React.Component {
 			isSucessful: false,
 			data:{},
 			extProjectId: this.props.selectedProject.extProjectId,
+			lastUpdate: null
 		}
 		this.sdk = new BackendSdk(this.props.authToken);
+		this.handleLastUpdate = this.handleLastUpdate.bind(this);
 	}
 
 	componentDidMount() {
 		this.getPrjData(this.state.extProjectId);
 	}
 
+	handleLastUpdate() {
+		this.setState({lastUpdate: 1*new Date()}, ()=>{
+			let id = this.state.extProjectId;
+			this.getPrjData(id);
+		});
+	}
 
 	getPrjData(id) {
 		this.sdk.getProject(id, response => {this.setState(response);});
@@ -43,15 +51,13 @@ class Project extends React.Component {
 						<h5><b>Title: </b>{prj.title}</h5>
 						<h5><b>UpdatedAt: </b>{prj.updatedAt}</h5>
 						<hr />
-						<pre>
-							{JSON.stringify(this.state.data.data)}
-						</pre>
-						{/*
 						<ProjectForm
 							project={this.state.data.data}
 							authToken={this.props.authToken}
+							handleLastUpdate={this.handleLastUpdate}
+							lastUpdate={this.state.lastUpdate}
 						/>
-						*/}
+						<hr />
 					</div>
 				</div>
 			</div>
