@@ -1,8 +1,4 @@
 import React from 'react';
-// import NavbarItem from './NavbarItem';
-// import NavbarBrand from './NavbarBrand';
-// import NavbarCollapseContainer from './NavbarCollapseContainer';
-// import logo from '../../resources/logo.svg';
 
 
 class Navbar extends React.Component {
@@ -29,14 +25,20 @@ class Navbar extends React.Component {
 						<span className="navbar-toggler-icon" />
 					</button>
 
-					<div className="navbar-collapse text-center justify-content-between collapse show" id="navbar2SupportedContent">
+					<div className={
+							"navbar-collapse text-center"+
+							"justify-content-between"+
+							"collapse show"}
+						 id="navbar2SupportedContent">
 
 						<ul className="navbar-nav">
 							<small>&nbsp;</small>
 						</ul>
 
 						<a className="navbar-brand mx-auto" href="#">
-							<span className="navbar-text d-flex justify-content-center">
+							<span className={
+								"navbar-text d-flex justify-content-center"}
+							>
 								<b>Dynata Front Panel</b>
 							</span>
 						</a>
