@@ -18,8 +18,9 @@ const Project = ({selectedProject}) => {
 					<h5><b>SLastUpdatedAt: </b>{prj.stateLastUpdatedAt}</h5>
 					<h5><b>Title: </b>{prj.title}</h5>
 					<h5><b>UpdatedAt: </b>{prj.updatedAt}</h5>
-					<pre>
-					</pre>
+					<div>
+						Form
+					</div>
 				</div>
 			</div>
 		</div>
