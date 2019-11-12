@@ -1,5 +1,6 @@
 import React from 'react';
 import BackendSdk from './../../utils/sdk/Sdk';
+import ProjectsContainer from './ProjectsContainer';
 
 class Projects extends React.Component {
 	constructor(props) {
@@ -28,7 +29,10 @@ class Projects extends React.Component {
 
 		if (this.state.isSucessful) {
 			return (
-				<>Projects
+				<>
+				<ProjectsContainer projects={this.state.data.data}
+					authToken={this.props.authToken}
+				/>
 				</>
 			);
 		}
