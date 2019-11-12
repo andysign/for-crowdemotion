@@ -5,7 +5,7 @@ class BackendSdk {
 		this.token = authToken;
 	}
 
-	static getBackendHost() {
+	static getOrigin() {
 		return SettingsService.getBackendHost();
 	}
 
@@ -14,6 +14,15 @@ class BackendSdk {
 			'Authorization': 'Basic ' + this.token,
 			'Content-Type': 'application/json'
 		}
+	}
+
+	makeRequest(path, method, callback) {
+		// this is the method that makes calls
+		let content = {
+			method: method,
+			headers: this.getAuthHeader()
+		}
+		BackendSdk.fetch(path, content, callback);
 	}
 
 	static getSuccessfullState(result) {
@@ -34,8 +43,7 @@ class BackendSdk {
 	}
 
 	static fetch(path, content, cb) {
-		fetch(path, content)
-		.then(response => {
+		fetch(path, content).then(response => {
 
 			if (!response.ok) {
 				cb(BackendSdk.getErrorState(response.status,response.statusText)
@@ -52,25 +60,26 @@ class BackendSdk {
 				}
 			}
 
-		})
-		.catch((error) => {
+		}).catch((error) => {
 			cb(BackendSdk.getErrorState('', error.message));
 		});
 	}
 
 	login(username, password, callback) {
-		const origin = BackendSdk.getBackendHost();
-		const path = origin + '/login';
+		const path = BackendSdk.getOrigin() + '/login';
 		const content = {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				username: username,
-				password: password
-			})
+			body: JSON.stringify({ username: username, password: password })
 		}
 		BackendSdk.fetch(path, content, callback);
 	}
+
+	getAllProjects(callback) {
+		const path = BackendSdk.getOrigin() + '/get-all-projects';
+		this.makeRequest(path, "GET", callback);
+	}
+
 }
 
 export default BackendSdk;
