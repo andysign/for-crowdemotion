@@ -39,8 +39,8 @@ class LoginView extends React.Component {
 		return (
 			<>
 				<form onSubmit={this.handleSubmit}>
-					<input name="username" onChange={this.handleChange} />
-					<input name="password" onChange={this.handleChange} />
+					<input name="username" onChange={this.handleChange} onClick={this.handleChange} />
+					<input name="password" onChange={this.handleChange} onClick={this.handleChange} />
 					<br /><button type="submit"><b>Submit</b></button>
 				</form>
 			</>
