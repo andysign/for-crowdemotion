@@ -51,12 +51,26 @@ class Project extends React.Component {
 						<h5><b>Title: </b>{prj.title}</h5>
 						<h5><b>UpdatedAt: </b>{prj.updatedAt}</h5>
 						<hr />
-						<ProjectForm
-							project={this.state.data.data}
-							authToken={this.props.authToken}
-							handleLastUpdate={this.handleLastUpdate}
-							lastUpdate={this.state.lastUpdate}
-						/>
+						{(()=>{
+
+							if (this.state.error) {
+								return (<h1>TODO:Add error component</h1>);
+							}
+
+							if (this.state.isSucessful) {
+								return (
+									<ProjectForm
+										project={this.state.data.data}
+										authToken={this.props.authToken}
+										handleLastUpdate={this.handleLastUpdate}
+										lastUpdate={this.state.lastUpdate}
+									/>
+								)
+							}
+
+							return (<>Loading...</>)
+
+						})()}
 						<hr />
 					</div>
 				</div>
