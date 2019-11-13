@@ -441,6 +441,10 @@ To run the **back-end** all you need is a dev machine and here, the preferred OS
 
 * Docker version `19.03.4`, build 9013bf583a or higher
 
+Or
+
+* NodeJs version `12` or higher
+
 ---
 
 ### CrowdEmotion Developer Exercise: Solution: Running The Backend
@@ -458,6 +462,14 @@ to run in normal production mode or for *development* mode:
 `npm run startdev`
 
 In dev mode you will see nodemon starting and showing the greeting _[nodemon] 1.19.4_.
+
+If you want to run the backend in docker you can use:
+
+`docker build -t ubuntu-backendtest-express .`
+
+then
+
+`docker run --rm -it --name backend -h backend -v $PWD/:/root/ -p 3000:3000 ubuntu-backendtest-express`
 
 ---
 
@@ -555,5 +567,49 @@ CURLstdout:<br>
 All or the above could be, with the right json object, submitted and therefore saved in the Dynata system.
 
 6. **A user should be able to see how it’s survey has been configured**
+
+---
+
+### CrowdEmotion Developer Exercise: Solution: FrontEnd
+
+The front-end panel is done in ReactJs. This React application can be run very simple (after making sure all the *npm* packages are installed with `npm i`):
+
+`npm run start`
+
+The front-end application can be viewed on port *8080*:
+
+**[http://localhost:8080/](http://localhost:8080/)**
+
+You can also run the forn-end application in docker if you can do:
+
+`docker build -t ubuntu-backendtest-express .`
+
+followed by:
+
+`docker run --rm -it --name backend -h backend -v $PWD/:/root/ -p 3000:3000 ubuntu-backendtest-express`
+
+The front-end allows the user to login:
+
+![log](https://i.imgur.com/jjWoxAl.png)
+
+The usual login credentials can be used (user: `admin`, pwd `password`).
+
+![scr](https://i.imgur.com/GoIGaQS.png)
+
+After you select the project you want to edit just user the edit prj attributes form to edit and hit `Save`
+
+![don](https://i.imgur.com/0tBT1BI.png)
+
+If everything is ok you will see the reply DONE.
+
+The front-end can be used for all the six use-cases:
+
+1. A user should be able to give a name to a survey
+2. A user should be able to select a country
+3. A user should be able to select a few attributes like age, gender, etc
+4. A user should be able to select the number of respondents in the panel
+5. A user should be able to submit the selection
+6. A user should be able to see how it’s survey has been configured
+
 
 ---
