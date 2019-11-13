@@ -14,7 +14,7 @@ class ProjectForm extends React.Component {
 			countryISOCode: project.lineItems[0].countryISOCode,
 			languageISOCode: project.lineItems[0].languageISOCode,
 			quotaPlanFilterOptions:
-				"project.lineItems[0].quotaPlan.filters[0].options",
+				project.lineItems[0].quotaPlan.filters[0].options.join("+"),
 			targetsCount: project.lineItems[0].targets[0].count
 		}
 		this.handleChange = this.handleChange.bind(this);
@@ -45,7 +45,6 @@ class ProjectForm extends React.Component {
 		data.lineItems[line].targets = [{}];
 		data.lineItems[line].targets[0].count = 1*this.state.targetsCount;
 		data.lineItems[line].targets[0].type = "COMPLETE";
-		console.log(data);
 		this.sdk.updateProject(this.state.extProjectId, data, (response)=>{
 			if (response.isSucessful) {
 				this.props.handleLastUpdate();
