@@ -43,7 +43,7 @@ class Project extends React.Component {
 						role="tabpanel"
 					>
 						<h1>Project Info:</h1>
-						<h2>{prj.extProjectId}</h2>
+						<h3><b>Id: </b><i>{prj.extProjectId}</i></h3>
 						<h5><b>CreatedAt: </b>{prj.createdAt}</h5>
 						<h5><b>JobNumber: </b>{prj.jobNumber}</h5>
 						<h5><b>State: </b>{prj.state}</h5>
@@ -51,6 +51,7 @@ class Project extends React.Component {
 						<h5><b>Title: </b>{prj.title}</h5>
 						<h5><b>UpdatedAt: </b>{prj.updatedAt}</h5>
 						<hr />
+						<h1>Edit Project Attributes:</h1>
 						{(()=>{
 
 							if (this.state.error) {
