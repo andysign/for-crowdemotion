@@ -24,21 +24,16 @@ class ProjectForm extends React.Component {
 
 	render () {
 		return (
-			<>
 			<form onSubmit={this.handleLastUpdateSubmit}>
 				<div className="form-group">
 					<label>Title</label>
 					<input name="title"
 						className="form-control"
-						defaultValue={1}
+						defaultValue={this.state.title}
 					/>
 				</div>
+				{this.props.lastUpdate && <h2>DONE</h2>}
 			</form>
-			{
-				this.props.lastUpdate&&
-				<h2>DONE</h2>
-			}
-			</>
 		);
 	}
 }
