@@ -68,7 +68,7 @@ class Project extends React.Component {
 								)
 							}
 
-							return (<>Loading...</>)
+							return (<LoadingSpinner height="200" />)
 
 						})()}
 						<hr />
