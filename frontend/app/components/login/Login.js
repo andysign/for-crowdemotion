@@ -59,6 +59,7 @@ class LoginView extends React.Component {
 										className="form-control"
 										onChange={this.handleChange}
 										onClick={this.handleChange}
+										type="password"
 									/>
 								</div>
 								<br />
