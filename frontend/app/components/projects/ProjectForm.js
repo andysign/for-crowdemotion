@@ -32,7 +32,12 @@ class ProjectForm extends React.Component {
 						defaultValue={this.state.title}
 					/>
 				</div>
-				{this.props.lastUpdate && <h2>DONE</h2>}
+				<button type="submit"
+					className="btn btn-outline-dark"
+				>
+					<b>Save</b>
+				</button>
+				{this.props.lastUpdate && <h2><br />DONE</h2>}
 			</form>
 		);
 	}
