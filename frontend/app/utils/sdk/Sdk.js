@@ -25,6 +25,16 @@ class BackendSdk {
 		BackendSdk.fetch(path, content, callback);
 	}
 
+	makeRequestWithPayload(path, method, payload, callback) {
+		// this is the method that makes calls with payload
+		let content = {
+			method: method,
+			headers: this.getAuthHeader(),
+			payload: payload
+		}
+		BackendSdk.fetch(path, content, callback);
+	}
+
 	static getSuccessfullState(result) {
 		// this is passed to the callback when an API call is sucessfull
 		return {
@@ -83,6 +93,11 @@ class BackendSdk {
 	getProject(extProjectId, callback) {
 		const path = BackendSdk.getOrigin()+'/get-project/'+extProjectId;
 		this.makeRequest(path, "GET", callback);
+	}
+
+	updateProject(extProjectId, data, callback) {
+		const path = BackendSdk.getOrigin()+'update-project/'+extProjectId;
+		this.makeRequestWithPayload(path, "POST", data, callback);
 	}
 
 }
