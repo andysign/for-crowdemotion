@@ -30,7 +30,7 @@ class BackendSdk {
 		let content = {
 			method: method,
 			headers: this.getAuthHeader(),
-			payload: payload
+			body: JSON.stringify(payload)
 		}
 		BackendSdk.fetch(path, content, callback);
 	}
@@ -96,7 +96,7 @@ class BackendSdk {
 	}
 
 	updateProject(extProjectId, data, callback) {
-		const path = BackendSdk.getOrigin()+'update-project/'+extProjectId;
+		const path = BackendSdk.getOrigin()+'/update-project/'+extProjectId;
 		this.makeRequestWithPayload(path, "POST", data, callback);
 	}
 
