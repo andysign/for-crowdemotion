@@ -10,8 +10,14 @@ class ProjectsContainer extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			selectedProject: null
+			selectedProject: null,
+			lastUpdate: null
 		}
+		this.handleLastUpdate = this.handleLastUpdate.bind(this);
+	}
+
+	handleLastUpdate() {
+		this.setState({lastUpdate: 1*new Date()}, ()=>{});
 	}
 
 	handleAllSelection() {
@@ -97,11 +103,23 @@ class ProjectsContainer extends React.Component {
 		}
 
 		return (
+			<>
 			<Project
 				selectedProject={this.state.selectedProject}
 				authToken={this.props.authToken}
 				handleLogout={this.props.handleLogout}
+				handleLastUpdate={this.handleLastUpdate}
 			/>
+			{this.state.lastUpdate &&
+				<div className="col-sm-12 col-12">
+					<div className="text-center">
+						<h2>DONE</h2>
+						LastUpdate:
+						{(new Date(this.state.lastUpdate)+"")}
+					</div>
+				</div>
+			}
+			</>
 		);
 
 	}

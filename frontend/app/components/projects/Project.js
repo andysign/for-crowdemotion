@@ -11,22 +11,22 @@ class Project extends React.Component {
 			isSucessful: false,
 			data:{},
 			extProjectId: this.props.selectedProject.extProjectId,
-			lastUpdate: null
+			// lastUpdate: null
 		}
 		this.sdk = new BackendSdk(this.props.authToken);
-		this.handleLastUpdate = this.handleLastUpdate.bind(this);
+		// this.handleLastUpdate = this.handleLastUpdate.bind(this);
 	}
 
 	componentDidMount() {
 		this.getPrjData(this.state.extProjectId);
 	}
 
-	handleLastUpdate() {
-		this.setState({lastUpdate: 1*new Date()}, ()=>{
-			let id = this.state.extProjectId;
-			this.getPrjData(id);
-		});
-	}
+	// handleLastUpdate() {
+	// 	this.setState({lastUpdate: 1*new Date()}, ()=>{
+	// 		let id = this.state.extProjectId;
+	// 		this.getPrjData(id);
+	// 	});
+	// }
 
 	getPrjData(id) {
 		this.sdk.getProject(id, response => {this.setState(response);});
@@ -63,7 +63,7 @@ class Project extends React.Component {
 									<ProjectForm
 										project={this.state.data.data}
 										authToken={this.props.authToken}
-										handleLastUpdate={this.handleLastUpdate}
+										handleLastUpdate={this.props.handleLastUpdate}
 										lastUpdate={this.state.lastUpdate}
 									/>
 								)
