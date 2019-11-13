@@ -602,6 +602,10 @@ After you select the project you want to edit just user the edit prj attributes 
 
 If everything is ok you will see the reply DONE.
 
+The front-end will also tell you in a overall stats page what's the number of projects you currently have if more than on:
+
+![num](https://i.imgur.com/lfALRRm.png)
+
 The front-end can be used for all the six use-cases:
 
 1. A user should be able to give a name to a survey
